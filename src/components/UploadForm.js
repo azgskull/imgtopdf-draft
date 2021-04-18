@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { jsPDF } from 'jspdf'
 import ImagePreview from './ImagePreview'
+import ImageListing from './ImageListing'
 
 const UploadForm = ({ children }) => {
   const [imgs, setImgs] = useState([])
@@ -73,6 +74,15 @@ const UploadForm = ({ children }) => {
     setImgs(imgsList)
   }
 
+  const dragEndHandler = ({ destination, draggableId, source }) => {
+    console.log(destination, draggableId, source)
+    const images = [...imgs]
+    const sourceItem = images[source.index]
+    images.splice(source.index, 1)
+    images.splice(destination.index, 0, sourceItem)
+    setImgs(images)
+  }
+
   return (
     <>
       <div className="relative flex flex-wrap w-full p-10 bg-gray-100 items-start">
@@ -83,16 +93,18 @@ const UploadForm = ({ children }) => {
           onChange={fileChangeHandler}
           className="absolute w-full h-full opacity-0 top-0 left-0"
         />
-
+      </div>
+      <ImageListing dragEndHandler={dragEndHandler}>
         {imgs.map((image, index) => (
           <ImagePreview
             img={image}
+            index={index}
             removeHandler={() => removeHandler(index)}
             format={format}
             orientation={orientation}
           />
         ))}
-      </div>
+      </ImageListing>
       <div className="flex justify-center">
         <select onChange={(e) => setFormat(e.target.value)}>
           <option value="custom" selected>
