@@ -1,21 +1,19 @@
-import { DragDropContext, Droppable } from 'react-beautiful-dnd'
+import React from 'react'
+import { SortableContainer } from 'react-sortable-hoc'
 
-const ImageListing = ({ children, dragEndHandler }) => {
+const ImageListing = SortableContainer(({ children }) => {
   return (
-    <DragDropContext onDragEnd={dragEndHandler}>
-      <Droppable droppableId="imageListing" type="a" direction="horizontal">
-        {(provided, snapshot) => (
-          <div
-            ref={provided.innerRef}
-            {...provided.droppableProps}
-            className="relative flex  items-start overflow-auto mx-5"
-          >
-            {children} {provided.placeholder}
-          </div>
-        )}
-      </Droppable>
-    </DragDropContext>
+    <div
+      className="relative grid items-start"
+      style={{
+        gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr)',
+        gap: 20,
+        padding: 20,
+      }}
+    >
+      {children}
+    </div>
   )
-}
+})
 
 export default ImageListing

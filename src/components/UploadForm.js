@@ -74,12 +74,11 @@ const UploadForm = ({ children }) => {
     setImgs(imgsList)
   }
 
-  const dragEndHandler = ({ destination, draggableId, source }) => {
-    console.log(destination, draggableId, source)
+  const onSortEnd = ({ oldIndex, newIndex }) => {
     const images = [...imgs]
-    const sourceItem = images[source.index]
-    images.splice(source.index, 1)
-    images.splice(destination.index, 0, sourceItem)
+    const sourceItem = images[oldIndex]
+    images.splice(oldIndex, 1)
+    images.splice(newIndex, 0, sourceItem)
     setImgs(images)
   }
 
@@ -94,17 +93,21 @@ const UploadForm = ({ children }) => {
           className="absolute w-full h-full opacity-0 top-0 left-0"
         />
       </div>
-      <ImageListing dragEndHandler={dragEndHandler}>
-        {imgs.map((image, index) => (
-          <ImagePreview
-            img={image}
-            index={index}
-            removeHandler={() => removeHandler(index)}
-            format={format}
-            orientation={orientation}
-          />
-        ))}
-      </ImageListing>
+      <div>
+        <ImageListing onSortEnd={onSortEnd} axis="xy" helperClass="opacity-90">
+          {imgs.map((image, index) => (
+            <ImagePreview
+              key={image.url}
+              img={image}
+              index={index}
+              indexPage={index}
+              removeHandler={() => removeHandler(index)}
+              format={format}
+              orientation={orientation}
+            />
+          ))}
+        </ImageListing>
+      </div>
       <div className="flex justify-center">
         <select onChange={(e) => setFormat(e.target.value)}>
           <option value="custom" selected>
