@@ -1,7 +1,7 @@
-import UploadForm from './components/UploadForm'
+import PDFCreatorWrapper from './containers/PDFCreator/PDFCreatorWrapper'
 
 function App() {
-  return <UploadForm />
+  return <PDFCreatorWrapper />
 }
 
 export default App
