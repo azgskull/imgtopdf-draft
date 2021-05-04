@@ -34,6 +34,9 @@ const useFileHandler = () => {
         addImage(objectImage)
       }
     }
+
+    // clear input
+    e.target.value = ''
   }
 
   // revokeFileUrl
