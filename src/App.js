@@ -1,7 +1,7 @@
-import PDFCreatorWrapper from './containers/PDFCreator/PDFCreatorWrapper'
+import PDFCreatorContainer from './containers/PDFCreator/PDFCreatorContainer'
 
 function App() {
-  return <PDFCreatorWrapper />
+  return <PDFCreatorContainer />
 }
 
 export default App

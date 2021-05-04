@@ -1,7 +1,7 @@
 import PDFCreator from './PDFCreator'
 import Provider from './Provider'
 
-const PDFCreatorWrapper = () => {
+const PDFCreatorContainer = () => {
   return (
     <Provider>
       <PDFCreator />
@@ -9,4 +9,4 @@ const PDFCreatorWrapper = () => {
   )
 }
 
-export default PDFCreatorWrapper
+export default PDFCreatorContainer
