@@ -1,22 +1,33 @@
-import { useContext } from 'react'
+import { useCallback, useContext } from 'react'
 import context from '../utilities/context'
 import ImagePreview from './ImagePreview'
+import { ReactSortable } from 'react-sortablejs'
 
 export const ImageListing = () => {
-  const { images } = useContext(context)
+  const { images, updateImagesOrder } = useContext(context)
+  const setList = useCallback(
+    (newImagesOrder) => {
+      updateImagesOrder(newImagesOrder)
+    },
+    [updateImagesOrder]
+  )
 
   return (
-    <div
+    <ReactSortable
       className="relative grid items-start"
       style={{
-        gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr)',
+        gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))',
         gap: 20,
         padding: 20,
       }}
+      list={images}
+      setList={setList}
+      animation="150"
+      ghostClass="opacity-0"
     >
       {images.map((image, index) => (
         <ImagePreview key={image.key} image={image} index={index} />
       ))}
-    </div>
+    </ReactSortable>
   )
 }

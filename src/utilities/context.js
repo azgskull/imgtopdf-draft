@@ -8,6 +8,7 @@ const context = createContext({
   clearImages: () => {},
   addImage: () => {},
   removeImage: () => {},
+  updateImagesOrder: () => {},
   updateFormat: () => {},
   updateOrientation: () => {},
 })

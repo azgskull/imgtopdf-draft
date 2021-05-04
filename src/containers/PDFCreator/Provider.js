@@ -34,6 +34,11 @@ const Provider = ({ children }) => {
     [revokeFileUrl]
   )
 
+  // update image order
+  const updateImagesOrder = useCallback((images_) => {
+    setImages(images_)
+  }, [])
+
   // update format
   const updateFormat = useCallback((newFormat) => {
     setFormat(newFormat)
@@ -53,6 +58,7 @@ const Provider = ({ children }) => {
         clearImages,
         addImage,
         removeImage,
+        updateImagesOrder,
         updateFormat,
         updateOrientation,
       }}
