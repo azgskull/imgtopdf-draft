@@ -15,7 +15,7 @@ export const ImageListing = () => {
       }}
     >
       {images.map((image, index) => (
-        <ImagePreview key={image.url} image={image} index={index} />
+        <ImagePreview key={image.key} image={image} index={index} />
       ))}
     </div>
   )
