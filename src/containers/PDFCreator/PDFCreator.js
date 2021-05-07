@@ -4,11 +4,11 @@ import UploadArea from '../../components/UploadArea'
 
 const PDFCreator = () => {
   return (
-    <>
+    <div className="relative flex flex-col h-screen w-screen">
       <UploadArea />
       <ImageListing />
       <ConfigurePDF />
-    </>
+    </div>
   )
 }
 

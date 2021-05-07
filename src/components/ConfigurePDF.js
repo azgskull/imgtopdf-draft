@@ -15,8 +15,12 @@ const ConfigurePDF = () => {
 
   const { create } = usePDF()
 
+  if (!images.length) {
+    return null
+  }
+
   return (
-    <div className="flex justify-center">
+    <div className="flex justify-center items-center">
       <select onChange={(e) => updateFormat(e.target.value)} value={format}>
         <option value={PAGE_FORMAT.CUSTOM}>Fit Image size</option>
         <option value={PAGE_FORMAT.A4}>A4</option>

@@ -34,7 +34,7 @@ const ImagePreview = memo(
 
     return (
       <div
-        className="relative flex flex-col items-center flex-none bg-gray-100 border shadow-xl w-full"
+        className="relative flex flex-col items-center flex-none bg-gray-100 border shadow-xl w-full rounded-lg overflow-hidden"
         style={{ height: 180 }}
       >
         <div className="flex items-center w-full bg-gray-900 mb-2">
